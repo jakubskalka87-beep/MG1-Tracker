@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101820">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<title>MG1 Tracker</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1116;--surface:#131d24;--surface2:#19262e;--line:#2a3943;--text:#f4f7f8;--muted:#9aabb5;--accent:#e8b875;--accent2:#f3d5a5;--green:#55d6a1;--blue:#80c5ff}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}.app{max-width:540px;margin:0 auto;min-height:100dvh;padding:18px 16px calc(96px + env(safe-area-inset-bottom))}header{display:flex;align-items:center;justify-content:space-between;margin:2px 0 20px}.brand{font-size:22px;letter-spacing:1.8px;font-weight:900}.brand span{color:var(--accent)}.subbrand{font-size:11px;color:var(--muted);letter-spacing:1.2px}.date{font-size:12px;color:var(--muted)}h1{font-size:25px;line-height:1.2;margin:0 0 6px}h2{font-size:17px;margin:0 0 13px}p{margin:0}.muted{color:var(--muted)}.small{font-size:12px}.card{background:linear-gradient(145deg,#17232a,#111a20);border:1px solid var(--line);border-radius:18px;padding:17px;margin:12px 0}.quote-card{min-height:145px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(130deg,#1e333c,#152128 68%,#473725)}.eyebrow{font-size:11px;letter-spacing:1.4px;color:var(--accent);font-weight:750}.quote{font-size:20px;font-weight:700;line-height:1.35;margin-top:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{padding:14px;margin:0;min-width:0}.stat .label{font-size:12px;color:var(--muted)}.stat .num{font-size:28px;font-weight:800;letter-spacing:-.6px;margin:7px 0 2px;overflow-wrap:anywhere}.stat .detail{font-size:11px;color:var(--muted)}.accent{color:var(--accent)}.green{color:var(--green)}.blue{color:var(--blue)}.goal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.goal-count{font-weight:750;white-space:nowrap}.progress{height:9px;background:#2b3941;border-radius:99px;overflow:hidden;margin-top:14px}.progress div{height:100%;width:0;background:linear-gradient(90deg,#c58f4c,#f5d49c);border-radius:99px;transition:width .2s}.btn{border:0;border-radius:12px;padding:13px 15px;font-weight:750}.primary{background:linear-gradient(180deg,#f3d19a,#d9a45f);color:#21180d}.secondary{background:#263740;color:var(--text);border:1px solid #354852}.wide{width:100%}.topline{display:flex;justify-content:space-between;align-items:center;margin:5px 0 15px}.source-row{display:grid;grid-template-columns:minmax(0,1fr) 116px;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #26363e}.source-row:last-child{border-bottom:0}.source-label{font-weight:650}.source-row input{width:100%;min-width:0;text-align:center;background:#0c151a;color:white;border:1px solid #344751;border-radius:10px;padding:11px 6px;font-size:17px;font-weight:700}.input-label{font-size:12px;color:var(--muted);margin-bottom:6px;display:block}.date-input{width:100%;background:#0c151a;border:1px solid #344751;border-radius:11px;padding:12px;color:white}.section-gap{margin-top:22px}.save-note{font-size:12px;color:var(--muted);margin:9px 0 0;text-align:center}.save-status{min-height:18px;font-size:12px;color:var(--green);text-align:center;margin-top:8px}.tabs{display:flex;gap:7px;margin:15px 0}.tabs button{flex:1;padding:10px 6px;background:#152129;color:var(--muted);border:1px solid var(--line);border-radius:11px;font-weight:700;font-size:13px}.tabs button.active{background:var(--accent);color:#1c160f;border-color:var(--accent)}.summary-row{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #293840}.summary-row:last-child{border-bottom:0}.summary-row span{color:var(--muted)}.chart{height:150px;display:flex;align-items:end;gap:6px;padding-top:12px;border-bottom:1px solid #35454d}.barcol{height:100%;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;gap:6px;min-width:0}.barval{font-size:10px;color:var(--muted)}.barstick{width:min(100%,28px);min-height:3px;border-radius:5px 5px 0 0;background:linear-gradient(#f5d5a0,#bd8544)}.barlabel{font-size:10px;color:var(--muted);white-space:nowrap}.empty{color:var(--muted);font-size:13px;padding:8px 0}.bottom{position:fixed;z-index:5;left:0;right:0;bottom:0;background:rgba(12,19,24,.96);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.nav{max-width:540px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.nav button{border:0;border-radius:12px;background:transparent;color:var(--muted);padding:8px 5px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:650}.nav button .ico{font-size:20px;line-height:1.1}.nav button.active{color:var(--accent);background:#1c2a31}.hidden{display:none!important}.toast{position:fixed;z-index:10;bottom:94px;left:50%;transform:translateX(-50%);background:#18382e;border:1px solid #316d55;color:#caffdf;padding:10px 15px;border-radius:12px;max-width:90%;font-size:13px;box-shadow:0 8px 30px #0008}.note{font-size:12px;color:var(--muted);line-height:1.55}dialog{background:#142129;color:var(--text);border:1px solid #3b4b54;border-radius:18px;width:min(420px,92vw);padding:20px}dialog::backdrop{background:#000a}.dialog-actions{display:flex;gap:8px;margin-top:15px}.dialog-actions button{flex:1}
+@media(min-width:600px){.app{padding-top:26px}.card{padding:19px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div><div class="brand">◢ <span>MG1</span> TRACKER</div><div class="subbrand">OSOBNÍ PROGRES, KAŽDÝ DEN</div></div><div class="date" id="todayDate"></div></header>
+
+<section id="page-home">
+<div class="card quote-card"><div class="eyebrow">MOTIVACE DNE</div><div class="quote" id="dailyQuote"></div></div>
+<div class="grid">
+<div class="card stat"><div class="label">Oslovení</div><div class="num" id="homeContacts">0</div><div class="detail">Celkem kontaktů</div></div>
+<div class="card stat"><div class="label">MG1</div><div class="num accent" id="homeMg1">0</div><div class="detail">Domluvené schůzky</div></div>
+<div class="card stat"><div class="label">Následné kroky</div><div class="num green" id="homeFollow">0</div><div class="detail">Pokračují v kvalifikaci</div></div>
+<div class="card stat"><div class="label">V týmu</div><div class="num blue" id="homeTeam">0</div><div class="detail">Dokončená kvalifikace</div></div>
+</div>
+<div class="card"><div class="goal-head"><div><h2>Měsíční cíl kontaktů</h2><div class="muted small" id="goalDescription">0 z 500 kontaktů</div></div><button class="btn secondary" style="padding:8px 10px" onclick="openGoal()">Upravit</button></div><div class="progress"><div id="goalProgress"></div></div></div>
+<button class="btn primary wide" onclick="go('log')">＋ Zapsat dnešní výsledky</button>
+<p class="note" style="text-align:center;margin-top:12px">Tvoje výsledky se ukládají automaticky do tohoto zařízení.</p>
+</section>
+
+<section id="page-log" class="hidden">
+<div class="topline"><div><h1>Denní zápis</h1><p class="muted small">Zapiš dnešní výsledky na jednom místě.</p></div></div>
+<div class="card">
+<label class="input-label" for="entryDate">Datum zápisu</label><input class="date-input" id="entryDate" type="date">
+<p class="note" style="margin-top:9px">Po uložení se číselná pole vynulují. Uložené výsledky zůstanou v přehledech a můžeš je kdykoliv zkontrolovat.</p>
+</div>
+<div class="card">
+<h2>1. Oslovení</h2><p class="muted small">Kolik lidí jsi oslovil a kde?</p>
+<div class="source-row"><div><div class="source-label">Instagram</div><div class="note">Zprávy a profily</div></div><input type="number" min="0" max="1000000" inputmode="numeric" id="countIg" value="0" aria-label="Oslovení přes Instagram"></div>
+<div class="source-row"><div><div class="source-label">Venku</div><div class="note">Osobní oslovení</div></div><input type="number" min="0" max="1000000" inputmode="numeric" id="countOutside" value="0" aria-label="Oslovení venku"></div>
+<div class="source-row"><div><div class="source-label">Jiné</div><div class="note">Další způsoby</div></div><input type="number" min="0" max="1000000" inputmode="numeric" id="countOther" value="0" aria-label="Jiné oslovení"></div>
+<div class="summary-row"><span>Celkem oslovení</span><strong id="contactPreview">0</strong></div>
+</div>
+<div class="card">
+<h2>2. Domluvené MG1</h2><p class="muted small">Kolik lidí si domluvil na první schůzku?</p>
+<div class="source-row"><div class="source-label">MG1 schůzky</div><input type="number" min="0" max="1000000" inputmode="numeric" id="countMg1" value="0" aria-label="Domluvené MG1"></div>
+</div>
+<div class="card">
+<h2>3. Následné kroky</h2><p class="muted small">Kolik lidí postoupilo dál v kvalifikaci?</p>
+<div class="source-row"><div class="source-label">Postoupili dál</div><input type="number" min="0" max="1000000" inputmode="numeric" id="countFollow" value="0" aria-label="Následné kroky"></div>
+</div>
+<div class="card">
+<h2>4. V týmu</h2><p class="muted small">Kolik lidí dokončilo kvalifikaci a dostalo se do týmu?</p>
+<div class="source-row"><div class="source-label">Noví členové týmu</div><input type="number" min="0" max="1000000" inputmode="numeric" id="countTeam" value="0" aria-label="Noví členové týmu"></div>
+</div>
+<button class="btn primary wide" id="saveEntry" onclick="saveEntry()">Uložit denní výsledky</button><div class="save-status" id="saveStatus" aria-live="polite"></div>
+<div class="card"><div class="goal-head"><h2>Uložené dny</h2><span class="muted small" id="entryCount">0 dní</span></div><div id="recentEntries" class="empty">Zatím tu nejsou žádné záznamy.</div></div>
+</section>
+
+<section id="page-stats" class="hidden">
+<div><h1>Statistiky</h1><p class="muted small">Přehled tvé aktivity a výsledků.</p></div>
+<div class="tabs"><button class="active" data-period="week" onclick="setPeriod('week')">Týden</button><button data-period="month" onclick="setPeriod('month')">Měsíc</button><button data-period="year" onclick="setPeriod('year')">Rok</button></div>
+<div class="card"><div class="goal-head"><div><div class="eyebrow">VYBRANÉ OBDOBÍ</div><h2 id="periodTitle" style="margin-top:5px">Tento týden</h2></div><div style="display:flex;gap:6px"><button class="btn secondary" style="padding:8px 12px" onclick="shiftPeriod(-1)" aria-label="Předchozí období">‹</button><button class="btn secondary" style="padding:8px 12px" onclick="shiftPeriod(1)" aria-label="Další období">›</button></div></div>
+<div class="grid" style="margin-top:14px">
+<div class="card stat"><div class="label">Oslovení</div><div class="num" id="statContacts">0</div></div><div class="card stat"><div class="label">Domluvené MG1</div><div class="num accent" id="statMg1">0</div></div><div class="card stat"><div class="label">Následné kroky</div><div class="num green" id="statFollow">0</div></div><div class="card stat"><div class="label">V týmu</div><div class="num blue" id="statTeam">0</div></div>
+</div></div>
+<div class="card"><h2>Odkud přichází oslovení</h2><div class="summary-row"><span>Instagram</span><strong id="statIg">0</strong></div><div class="summary-row"><span>Venku</span><strong id="statOutside">0</strong></div><div class="summary-row"><span>Jiné</span><strong id="statOther">0</strong></div></div>
+<div class="card"><h2>Aktivita v čase</h2><div class="chart" id="chart"></div><p class="note" style="margin-top:10px">Graf zobrazuje počet oslovení v jednotlivých dnech nebo měsících vybraného období.</p></div>
+</section>
+</div>
+<nav class="bottom"><div class="nav"><button class="active" data-page="home" onclick="go('home')"><span class="ico">⌂</span>Domů</button><button data-page="log" onclick="go('log')"><span class="ico">＋</span>Oslovení</button><button data-page="stats" onclick="go('stats')"><span class="ico">▥</span>Statistiky</button></div></nav>
+<div id="toast" class="toast hidden" role="status"></div>
+<dialog id="goalDialog"><h2>Tvůj měsíční cíl</h2><p class="muted small">Kolik lidí chceš oslovit za měsíc?</p><div style="margin-top:14px"><label class="input-label" for="goalInput">Počet kontaktů</label><input id="goalInput" class="date-input" type="number" min="1" max="1000000" inputmode="numeric" value="500"></div><div class="dialog-actions"><button class="btn secondary" onclick="goalDialog.close()">Zrušit</button><button class="btn primary" onclick="saveGoal()">Uložit cíl</button></div></dialog>
+<script>
+const STORE='mg1-tracker-simple-v1';
+const $=id=>document.getElementById(id);
+const localDate=(d=new Date())=>{const x=new Date(d.getTime()-d.getTimezoneOffset()*60000);return x.toISOString().slice(0,10)};
+const fmt=n=>Number(n||0).toLocaleString('cs-CZ');
+const quotes=[
+'Malé kroky každý den tvoří velké výsledky.',
+'Disciplína dnes, výsledky zítra.',
+'Každé oslovení je nová příležitost.',
+'Odvaha začíná prvním krokem.',
+'Pokrok je důležitější než dokonalost.',
+'Tvoje budoucnost vzniká tím, co děláš dnes.',
+'Konzistence poráží krátkodobé nadšení.',
+'Nesrovnávej svůj začátek s cizím vrcholem.',
+'Nečekej na motivaci. Začni a motivace přijde.',
+'Velké cíle se skládají z malých činů.',
+'Každý rozhovor tě něco naučí.',
+'Neúspěch je informace, ne konečná stanice.',
+'Dnes udělej něco, za co ti budoucí já poděkuje.',
+'Věř procesu a měř výsledky.',
+'Zaměř se na to, co můžeš ovlivnit.',
+'Sebevědomí roste zkušeností.',
+'Trpělivost a vytrvalost tvoří náskok.',
+'I pomalý posun je pořád posun.',
+'Začni dřív, než budeš připravený.',
+'Tvé návyky určují směr.',
+'Každé odmítnutí tě může něco naučit.',
+'Úspěch je součet malých kroků opakovaných každý den.',
+'Nemusíš být nejlepší. Stačí být každý den o trochu lepší.',
+'Nejdůležitější je nevzdat se po prvním odmítnutí.',
+'Výsledky začínají rozhodnutím jednat.'
+];
+let state={entries:[],goal:500};
+try{const saved=JSON.parse(localStorage.getItem(STORE)||'null');if(saved&&Array.isArray(saved.entries))state={...state,...saved};}catch(e){}
+if(!Number.isFinite(Number(state.goal))||Number(state.goal)<1)state.goal=500;
+let period='week',periodOffset=0;
+function persist(){try{localStorage.setItem(STORE,JSON.stringify(state));return true}catch(e){showToast('Uložení se nepodařilo. Zkontroluj volné místo v prohlížeči.');return false}}
+function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>t.classList.add('hidden'),2600)}
+function go(page){document.querySelectorAll('[id^="page-"]').forEach(s=>s.classList.toggle('hidden',s.id!=='page-'+page));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));if(page==='stats')renderStats();if(page==='log')renderRecent();if(page==='home')renderHome();window.scrollTo({top:0,behavior:'smooth'})}
+function val(id){return Math.max(0,Math.floor(Number($(id).value)||0))}
+function total(e){return e.ig+e.outside+e.other}
+function currentMonthEntries(){let m=localDate().slice(0,7);return state.entries.filter(e=>e.date.startsWith(m))}
+function renderHome(){let all=state.entries;const sum=k=>all.reduce((s,e)=>s+(Number(e[k])||0),0);$('homeContacts').textContent=fmt(all.reduce((s,e)=>s+total(e),0));$('homeMg1').textContent=fmt(sum('mg1'));$('homeFollow').textContent=fmt(sum('follow'));$('homeTeam').textContent=fmt(sum('team'));const monthly=currentMonthEntries().reduce((s,e)=>s+total(e),0);$('goalDescription').textContent=`${fmt(monthly)} z ${fmt(state.goal)} kontaktů · ${Math.round(monthly/state.goal*100)} %`; $('goalProgress').style.width=Math.min(100,monthly/state.goal*100)+'%'}
+function openGoal(){$('goalInput').value=state.goal;$('goalDialog').showModal()}
+function saveGoal(){const n=Number($('goalInput').value);if(!Number.isInteger(n)||n<1||n>1000000){showToast('Zadej celé číslo od 1 do 1 000 000.');return}state.goal=n;if(persist()){ $('goalDialog').close();renderHome();showToast('Měsíční cíl byl uložen.')}} 
+function updatePreview(){const n=val('countIg')+val('countOutside')+val('countOther');$('contactPreview').textContent=fmt(n)}
+['countIg','countOutside','countOther','countMg1','countFollow','countTeam'].forEach(id=>$(id).addEventListener('input',updatePreview));
+function resetFields(){['countIg','countOutside','countOther','countMg1','countFollow','countTeam'].forEach(id=>$(id).value='0');updatePreview()}
+function saveEntry(){const date=$('entryDate').value;if(!date){showToast('Nejdřív vyber datum.');return}
+const e={date,ig:val('countIg'),outside:val('countOutside'),other:val('countOther'),mg1:val('countMg1'),follow:val('countFollow'),team:val('countTeam')};
+if(!Object.keys(e).slice(1).every(k=>Number.isSafeInteger(e[k])&&e[k]>=0&&e[k]<=1000000)){showToast('Zkontroluj zadaná čísla.');return}
+const index=state.entries.findIndex(x=>x.date===date);
+if(index>=0){const old=state.entries[index];const hasData=Object.keys(e).slice(1).some(k=>e[k]!==0);if(hasData&&!confirm('Pro toto datum už záznam existuje. Chceš ho nahradit novými hodnotami?'))return;state.entries[index]=e}else state.entries.push(e);
+state.entries.sort((a,b)=>a.date.localeCompare(b.date));
+if(!persist())return;
+resetFields();renderRecent();renderHome();renderStats();$('saveStatus').textContent='✓ Uloženo · pole jsou připravená na další zápis';showToast('Denní výsledky uloženy. Číselná pole jsou vynulována.')}
+function renderRecent(){const entries=[...state.entries].sort((a,b)=>b.date.localeCompare(a.date));$('entryCount').textContent=`${entries.length} ${entries.length===1?'den':entries.length<5?'dny':'dní'}`;$('recentEntries').innerHTML=entries.length?entries.slice(0,8).map(e=>`<div class="summary-row"><div><strong>${escapeHtml(e.date)}</strong><div class="note">IG ${fmt(e.ig)} · Venku ${fmt(e.outside)} · Jiné ${fmt(e.other)}</div><div class="note">MG1 ${fmt(e.mg1)} · Následné ${fmt(e.follow)} · Tým ${fmt(e.team)}</div></div><strong class="accent">${fmt(total(e))}</strong></div>`).join(''):'<div class="empty">Zatím tu nejsou žádné záznamy.</div>'}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function setPeriod(p){period=p;periodOffset=0;document.querySelectorAll('[data-period]').forEach(b=>b.classList.toggle('active',b.dataset.period===p));renderStats()}
+function shiftPeriod(n){periodOffset+=n;renderStats()}
+function periodRange(){const now=new Date();now.setHours(12,0,0,0);let start,end,title;if(period==='week'){const dow=(now.getDay()+6)%7;start=new Date(now);start.setDate(now.getDate()-dow+periodOffset*7);end=new Date(start);end.setDate(start.getDate()+6);title=periodOffset===0?'Tento týden':`${localDate(start)} – ${localDate(end)}`}else if(period==='month'){start=new Date(now.getFullYear(),now.getMonth()+periodOffset,1,12);end=new Date(start.getFullYear(),start.getMonth()+1,0,12);title=start.toLocaleDateString('cs-CZ',{month:'long',year:'numeric'})}else{const y=now.getFullYear()+periodOffset;start=new Date(y,0,1,12);end=new Date(y,11,31,12);title=String(y)}return {start:localDate(start),end:localDate(end),title}}
+function renderStats(){const r=periodRange();$('periodTitle').textContent=r.title;const entries=state.entries.filter(e=>e.date>=r.start&&e.date<=r.end);const sum=k=>entries.reduce((s,e)=>s+(Number(e[k])||0),0);$('statContacts').textContent=fmt(entries.reduce((s,e)=>s+total(e),0));$('statMg1').textContent=fmt(sum('mg1'));$('statFollow').textContent=fmt(sum('follow'));$('statTeam').textContent=fmt(sum('team'));$('statIg').textContent=fmt(sum('ig'));$('statOutside').textContent=fmt(sum('outside'));$('statOther').textContent=fmt(sum('other'));
+let grouped=[];if(period==='year'){for(let m=0;m<12;m++){const key=String(new Date(r.start+'T12:00:00').getFullYear())+'-'+String(m+1).padStart(2,'0');const n=entries.filter(e=>e.date.startsWith(key)).reduce((s,e)=>s+total(e),0);grouped.push({label:['Led','Úno','Bře','Dub','Kvě','Čvn','Čvc','Srp','Zář','Říj','Lis','Pro'][m],n})}}else{const s=new Date(r.start+'T12:00:00'),e=new Date(r.end+'T12:00:00');for(let d=new Date(s);d<=e;d.setDate(d.getDate()+1)){const key=localDate(d);grouped.push({label:period==='week'?['Po','Út','St','Čt','Pá','So','Ne'][(d.getDay()+6)%7]:String(d.getDate()),n:entries.filter(x=>x.date===key).reduce((sum,x)=>sum+total(x),0)})}}
+const max=Math.max(1,...grouped.map(x=>x.n));$('chart').innerHTML=grouped.map(x=>`<div class="barcol" title="${escapeHtml(x.label)}: ${fmt(x.n)}"><div class="barval">${x.n?fmt(x.n):''}</div><div class="barstick" style="height:${Math.max(3,x.n/max*94)}px"></div><div class="barlabel">${escapeHtml(x.label)}</div></div>`).join('')}
+$('todayDate').textContent=new Date().toLocaleDateString('cs-CZ',{day:'numeric',month:'short'});
+const dayIndex=Math.floor(new Date(localDate()+'T12:00:00').getTime()/86400000);$('dailyQuote').textContent='„'+quotes[((dayIndex%quotes.length)+quotes.length)%quotes.length]+'“';
+$('entryDate').value=localDate();$('entryDate').addEventListener('change',()=>{$('saveStatus').textContent='';});
+renderHome();renderRecent();renderStats();
+if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
+</script>
+</body></html>
